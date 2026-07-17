@@ -13,7 +13,9 @@ Try [Mock SAML](https://mocksaml.com/), our free hosted service. Whilst we use t
 
 ### With Docker
 
-The docker container can be found at [boxyhq/mock-saml](https://hub.docker.com/r/boxyhq/mock-saml).
+The docker container can be found at [quinnofficial/mock-saml-x](https://hub.docker.com/r/quinnofficial/mock-saml-x).
+
+#### Option 1: Passing environment variables via command line
 
 ```bash
 docker run \
@@ -22,21 +24,39 @@ docker run \
   -e ENTITY_ID="https://saml.example.com/entityid" \
   -e PUBLIC_KEY="<PUBLIC_KEY>" \
   -e PRIVATE_KEY="<PRIVATE_KEY>" \
-  -d boxyhq/mock-saml
+  -d quinnofficial/mock-saml-x
 ```
 
-Refer to [env.example](https://github.com/boxyhq/mock-saml/blob/main/.env.example#L5C3-L5C97) for instructions on how to create the key pair.
+Refer to [env.example](https://github.com/quinnrunsystem/mocksaml/blob/main/.env.example#L5) for instructions on how to create the key pair.
 Replace `<PUBLIC_KEY>` with Base64 encoded value of public key.
 Replace `<PRIVATE_KEY>` with Base64 encoded value of private key.
+
+#### Option 2: Using a `.env` file
+
+To avoid errors or shell parsing issues with multiline keys (like public/private keys) in command arguments, you can configure your environment variables in a `.env` file:
+
+```bash
+cp .env.example .env
+# Edit .env and configure the variables (APP_URL, ENTITY_ID, PUBLIC_KEY, PRIVATE_KEY)
+```
+
+Then run the container referencing the `.env` file:
+
+```bash
+docker run \
+  -p 4000:4000 \
+  --env-file .env \
+  -d quinnofficial/mock-saml-x
+```
 
 ### Without Docker
 
 ```
-git clone https://github.com/boxyhq/mock-saml.git
+git clone https://github.com/quinnrunsystem/mocksaml.git
 ```
 
 ```
-cd mock-saml
+cd mocksaml
 ```
 
 Install dependencies
