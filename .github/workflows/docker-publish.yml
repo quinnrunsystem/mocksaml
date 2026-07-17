@@ -26,7 +26,7 @@ jobs:
       - run: |
           npm install
 
-          IMAGE_PATH=boxyhq/mock-saml
+          IMAGE_PATH=quinnofficial/mock-saml-x
           echo "IMAGE_PATH=${IMAGE_PATH}" >> $GITHUB_OUTPUT
           MOCK_SAML_VERSION=$(echo $(cat ./package.json) | ./node_modules/json/lib/json.js version)
           echo "NPMVERSION=$(echo ${MOCK_SAML_VERSION})" >> $GITHUB_OUTPUT
