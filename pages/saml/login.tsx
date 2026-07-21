@@ -10,9 +10,9 @@ export default function Login() {
   const authUrl = namespace ? `/api/namespace/${namespace}/saml/auth` : '/api/saml/auth';
   const [state, setState] = useState({
     username: 'jackson',
-    domain: 'example.com',
-    acsUrl: 'https://sso.eu.boxyhq.com/api/oauth/saml',
-    audience: 'https://saml.boxyhq.com',
+    domain: 'runsystem.net',
+    acsUrl: 'http://localhost:3333/auth/saml/acs',
+    audience: 'jackson',
   });
 
   const acsUrlInp = useRef<HTMLInputElement>(null);
@@ -135,8 +135,7 @@ export default function Login() {
                     value={state.domain}
                     onChange={handleChange}
                     className='w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-primary focus:ring-2 focus:ring-primary/30'>
-                    <option value='example.com'>@example.com</option>
-                    <option value='example.org'>@example.org</option>
+                    <option value='runsystem.net'>@runsystem.net</option>
                   </select>
                 </div>
 
@@ -165,8 +164,7 @@ export default function Login() {
           <div className='rounded-md border border-blue-200 bg-blue-50 p-4'>
             <p className='text-sm text-blue-900'>
               This is a simulated login screen. You may choose any username, but only the domains{' '}
-              <code className='font-mono'>example.com</code> and{' '}
-              <code className='font-mono'>example.org</code> are allowed.
+              <code className='font-mono'>runsystem.net</code> and{' '}
             </p>
           </div>
         </div>
